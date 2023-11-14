@@ -1,31 +1,35 @@
-import java.util.Scanner;
-
 public class Dec2Hex {
     public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("No input provided. Please provide an integer.");
+            return;
+        }
+
         try {
-            Scanner scanner = new Scanner(System.in);
-
-            System.out.print("Enter a decimal number: ");
-            int decimalNumber = scanner.nextInt();
-            scanner.close();
-
-            if (decimalNumber < 0) {
-                System.out.println("Please provide a non-negative decimal number.");
-                return;
-            }
-
-            StringBuilder hexNumber = new StringBuilder();
-            while (decimalNumber != 0) {
-                int rem = decimalNumber % 16;
-                char hexDigit = (rem < 10) ? (char) (rem + '0') : (char) (rem - 10 + 'A');
-                hexNumber.insert(0, hexDigit);
-                decimalNumber = decimalNumber / 16;
-            }
-
-            System.out.println("Hexadecimal equivalent: " + hexNumber);
+            int decimalNumber = Integer.parseInt(args[0]);
+            String hexValue = convertToHex(decimalNumber);
+            System.out.println("Hexadecimal representation: " + hexValue);
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please provide a valid decimal number.");
         }
+    }
+
+    private static String convertToHex(int decimalNumber) {
+        if (decimalNumber == 0) {
+            return "0";
+        }
+
+        StringBuilder hexBuilder = new StringBuilder();
+        int temp = decimalNumber;
+
+        while (temp != 0) {
+            int remainder = temp % 16;
+            char hexDigit = (char) (remainder < 10 ? remainder + '0' : remainder - 10 + 'A');
+            hexBuilder.insert(0, hexDigit);
+            temp /= 16;
+        }
+
+        return hexBuilder.toString();
     }
 }
 
