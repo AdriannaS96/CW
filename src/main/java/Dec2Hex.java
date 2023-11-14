@@ -1,36 +1,31 @@
 import java.util.Scanner;
 
 public class Dec2Hex {
-
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try {
-            if (args.length == 0) {
-                System.out.println("Please provide a decimal number as a comman>
-                return;
-            }
+            Scanner scanner = new Scanner(System.in);
 
-            int decimalNumber = Integer.parseInt(args[0]);
+            System.out.print("Enter a decimal number: ");
+            int decimalNumber = scanner.nextInt();
+            scanner.close();
 
             if (decimalNumber < 0) {
-                System.out.println("Please provide a non-negative decimal numbe>
+                System.out.println("Please provide a non-negative decimal number.");
                 return;
             }
 
-            char hexChars[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'>
-            int rem;
-        String hexadecimal = "";
-            System.out.println("Converting the Decimal Value " + decimalNumber >
-
+            StringBuilder hexNumber = new StringBuilder();
             while (decimalNumber != 0) {
-                rem = decimalNumber % 16;
-                hexadecimal = hexChars[rem] + hexadecimal;
+                int rem = decimalNumber % 16;
+                char hexDigit = (rem < 10) ? (char) (rem + '0') : (char) (rem - 10 + 'A');
+                hexNumber.insert(0, hexDigit);
                 decimalNumber = decimalNumber / 16;
             }
 
-            System.out.println("Hexadecimal representation is: " + (hexadecimal>
-
+            System.out.println("Hexadecimal equivalent: " + hexNumber);
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please provide a valid decimal n>
+            System.out.println("Invalid input. Please provide a valid decimal number.");
         }
     }
 }
+
