@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+    <displayName>Dec2Hex</displayName>
+    
+    <properties>
+        <jdk.version>your_jdk_version</jdk.version>
+        <ant.version>your_ant_version</ant.version>
+    </properties>
+
+    <scm class="hudson.scm.NullSCM"/>
+
+    <builders>
+        <hudson.tasks.Ant>
+            <targets>test</targets>
+            <antName>${ant.version}</antName>
+            <buildFile>/path/to/your/build.xml</buildFile>
+        </hudson.tasks.Ant>
+    </builders>
+
+    <publishers>
+        <hudson.tasks.junit.JUnitResultArchiver>
+            <testResults>${test.report.dir}/*.xml</testResults>
+            <keepLongStdio>false</keepLongStdio>
+            <testDataPublishers>
+                <hudson.tasks.junit.TestResultArchiver/>
+            </testDataPublishers>
+        </hudson.tasks.junit.JUnitResultArchiver>
+    </publishers>
+
+    <buildWrappers>
+        <hudson.plugins.ws__cleanup.PreBuildCleanup>
+            <deleteDirs>true</deleteDirs>
+            <cleanupParameter></cleanupParameter>
+        </hudson.plugins.ws__cleanup.PreBuildCleanup>
+    </buildWrappers>
+
+    <buildProperties>
+        <hudson.model.ParametersDefinitionProperty>
+            <parameterDefinitions>
+                <!-- Define any parameters needed for your build -->
+            </parameterDefinitions>
+        </hudson.model.ParametersDefinitionProperty>
+    </buildProperties>
+
+    <prebuilders>
+        <hudson.tasks.Maven>
+            <mavenName>your_maven_installation</mavenName>
+            <goals>clean install</goals>
+            <pom>path/to/your/pom.xml</pom>
+            <properties>your_additional_properties</properties>
+            <options>your_additional_options</options>
+        </hudson.tasks.Maven>
+    </prebuilders>
+
+    <postbuilders>
+        <!-- Any post-build steps you may need -->
+    </postbuilders>
+</project>
