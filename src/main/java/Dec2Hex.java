@@ -4,7 +4,7 @@ public class Dec2Hex {
 
     public static void main(String args[]) {
         try {
-            if (args.length == 0) {
+            if (args.length == 1) {
                 System.out.println("Please provide a decimal number as a comman>
                 return;
             }
