@@ -1,5 +1,9 @@
 public class Dec2Hex {
     public static String convertDecimalToHex(int decimalNumber) {
+        if (decimalNumber < 0) {
+            return "Please enter a non-negative number.";
+        }
+
         if (decimalNumber == 0) {
             return "0";
         }
@@ -32,5 +36,6 @@ public class Dec2Hex {
         }
     }
 }
+
 
 
