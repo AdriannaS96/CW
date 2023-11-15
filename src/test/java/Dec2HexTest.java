@@ -20,15 +20,16 @@ public class Dec2HexTest {
 
     @Test
     public void testRandomNumber() {
-        assertEquals("HexValueForRandomNumber", Dec2Hex.convertDecimalToHex(YourRandomNumber));
+ 
+        assertEquals("2A", Dec2Hex.convertDecimalToHex(42));
     }
 
     @Test
     public void testAnotherNumber() {
-        assertEquals("HexValueForAnotherNumber", Dec2Hex.convertDecimalToHex(YourAnotherNumber));
+        
+        assertEquals("80", Dec2Hex.convertDecimalToHex(128));
     }
+
+
 }
-
-
-
 
