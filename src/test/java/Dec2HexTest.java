@@ -1,4 +1,3 @@
-  GNU nano 6.2                                                                  Dec2HexTest.java
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -6,28 +5,20 @@ public class Dec2HexTest {
 
     @Test
     public void testDecimalToHexConversion() {
-        String result = Dec2Hex.convertDecimalToHex(15);
-        assertEquals("F", result);
-
-        result = Dec2Hex.convertDecimalToHex(1);
-        assertEquals("1", result);
-
-        result = Dec2Hex.convertDecimalToHex(25);
-        assertEquals("19", result);
-
-        result = Dec2Hex.convertDecimalToHex(30);
-        assertEquals("1E", result);
-
-        result = Dec2Hex.convertDecimalToHex(106);
-        assertEquals("6A", result);
+        assertEquals("F", Dec2Hex.convertDecimalToHex(15));
+        assertEquals("1", Dec2Hex.convertDecimalToHex(1));
+        assertEquals("19", Dec2Hex.convertDecimalToHex(25));
+        assertEquals("1E", Dec2Hex.convertDecimalToHex(30));
+        assertEquals("6A", Dec2Hex.convertDecimalToHex(106));
+        assertEquals("0", Dec2Hex.convertDecimalToHex(0));
     }
 
     @Test
     public void testInvalidInput() {
-        String result = Dec2Hex.convertDecimalToHex(-1);
-        assertEquals("Enter non negative number.", result);
+        assertEquals("Enter non-negative number.", Dec2Hex.convertDecimalToHex(-1));
     }
 }
+
 
 
 
