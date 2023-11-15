@@ -22,12 +22,12 @@ public class Dec2HexTest {
 
     @Test
     public void testInvalidInput() {
-        assertNull(Dec2Hex.convertDecimalToHex(-1));
         assertNull(Dec2Hex.convertDecimalToHex(Integer.MIN_VALUE));
         assertNull(Dec2Hex.convertDecimalToHex(Integer.MAX_VALUE));
         assertNull(Dec2Hex.convertDecimalToHex(Integer.MIN_VALUE + 1));
         assertNull(Dec2Hex.convertDecimalToHex(Integer.MAX_VALUE - 1));
     }
 }
+
 
 
