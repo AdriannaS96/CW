@@ -13,23 +13,19 @@ public class Dec2HexTest {
         assertEquals("0", Dec2Hex.convertDecimalToHex(0));
     }
 
-    @Test
+    @Test(expected = NumberFormatException.class)
     public void testInvalidInput() {
-        assertEquals("Enter non-negative number.", Dec2Hex.convertDecimalToHex(-1));
+        Dec2Hex.convertDecimalToHex(-1);
     }
 
     @Test
     public void testRandomNumber() {
-
         assertEquals("2A", Dec2Hex.convertDecimalToHex(42));
     }
 
     @Test
     public void testAnotherNumber() {
-
         assertEquals("80", Dec2Hex.convertDecimalToHex(128));
     }
-
-
 }
 
