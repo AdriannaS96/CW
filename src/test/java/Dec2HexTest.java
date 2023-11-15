@@ -17,7 +17,18 @@ public class Dec2HexTest {
     public void testInvalidInput() {
         assertEquals("Enter non-negative number.", Dec2Hex.convertDecimalToHex(-1));
     }
+
+    @Test
+    public void testRandomNumber() {
+        assertEquals("HexValueForRandomNumber", Dec2Hex.convertDecimalToHex(YourRandomNumber));
+    }
+
+    @Test
+    public void testAnotherNumber() {
+        assertEquals("HexValueForAnotherNumber", Dec2Hex.convertDecimalToHex(YourAnotherNumber));
+    }
 }
+
 
 
 
