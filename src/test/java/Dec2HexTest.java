@@ -15,9 +15,14 @@ public class Dec2HexTest {
         assertEquals("FF", Dec2Hex.convertDecimalToHex(255));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testNegativeInput() {
-        Dec2Hex.convertDecimalToHex(-1);
+        try {
+            Dec2Hex.convertDecimalToHex(-1);
+            fail("Expected IllegalArgumentException");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Input must be a non-negative integer.", e.getMessage());
+        }
     }
 
     @Test
@@ -28,6 +33,7 @@ public class Dec2HexTest {
         assertNull(Dec2Hex.convertDecimalToHex(Integer.MAX_VALUE - 1));
     }
 }
+
 
 
 
