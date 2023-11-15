@@ -1,43 +1,37 @@
-import java.util.Scanner;
-
 public class Dec2Hex {
 
-    public static void main(String args[]) {
+    public static String convertDecimalToHex(int decimal) {
+        if (decimal < 0) {
+            throw new IllegalArgumentException("Input must be a non-negative integer.");
+        }
+
+        if (decimal == 0) {
+            return "0";
+        }
+
+        StringBuilder hex = new StringBuilder();
+        while (decimal > 0) {
+            int remainder = decimal % 16;
+            hex.insert(0, Integer.toHexString(remainder));
+            decimal = decimal / 16;
+        }
+
+        return hex.toString();
+    }
+
+    public static void main(String[] args) {
         if (args.length == 0) {
-            System.out.println("No input. enter an integer.");
-            return;
+            System.err.println("Error: No input provided. Please provide an integer.");
+            System.exit(1);
         }
 
         try {
             int decimal = Integer.parseInt(args[0]);
-            if (decimal < 0) {
-                System.out.println("Enter non-negative number.");
-                return;
-            }
-
-            String hexadecimal = convertDecimalToHex(decimal);
-
-            System.out.println("Hexadecimal representation is: " + hexadecimal);
+            String hex = convertDecimalToHex(decimal);
+            System.out.println("Hexadecimal representation is: " + hex);
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please provide a valid integer.");
+            System.err.println("Error: Input must be a valid integer.");
+            System.exit(1);
         }
-    }
-
-    public static String convertDecimalToHex(int decimal) {
-        char ch[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-        int rem;
-        StringBuilder hexadecimal = new StringBuilder();
-
-        while (decimal != 0) {
-            rem = decimal % 16;
-            hexadecimal.insert(0, ch[rem]);
-            decimal = decimal / 16;
-        }
-
-        return hexadecimal.toString();
     }
 }
-
-
-
-
