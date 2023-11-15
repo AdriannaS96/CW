@@ -1,54 +1,35 @@
-
-<?xml version='1.0' encoding='UTF-8'?>
-<project name="Dec2Hex">
-
-<!--    <scm class="hudson.scm.NullSCM"/> -->
-
-    <builders>
-        <hudson.tasks.Ant>
-            <targets>test</targets>
-            <antName>${ant.version}</antName>
-            <buildFile>/path/to/your/build.xml</buildFile>
-        </hudson.tasks.Ant>
-    </builders>
-
-    <publishers>
-        <hudson.tasks.junit.JUnitResultArchiver>
-            <testResults>${test.report.dir}/*.xml</testResults>
-            <keepLongStdio>false</keepLongStdio>
-            <testDataPublishers>
-                <hudson.tasks.junit.TestResultArchiver/>
-            </testDataPublishers>
-        </hudson.tasks.junit.JUnitResultArchiver>
-    </publishers>
-
-    <buildWrappers>
-        <hudson.plugins.ws__cleanup.PreBuildCleanup>
-            <deleteDirs>true</deleteDirs>
-            <cleanupParameter></cleanupParameter>
-        </hudson.plugins.ws__cleanup.PreBuildCleanup>
-    </buildWrappers>
-
-    <buildProperties>
-        <hudson.model.ParametersDefinitionProperty>
-            <parameterDefinitions>
-                <!-- Define any parameters needed for your build -->
-            </parameterDefinitions>
-        </hudson.model.ParametersDefinitionProperty>
-    </buildProperties>
-
-    <prebuilders>
-        <hudson.tasks.Maven>
-            <mavenName>your_maven_installation</mavenName>
-            <goals>clean install</goals>
-            <pom>path/to/your/pom.xml</pom>
-            <properties>your_additional_properties</properties>
-            <options>your_additional_options</options>
-        </hudson.tasks.Maven>
-    </prebuilders>
-
-    <postbuilders>
-        <!-- Any post-build steps you may need -->
-    </postbuilders>
+<project name="Dec2Hex" default="test" basedir=".">
+<property name="src.dir" value="src/main/java"/>
+<property name="test.src.dir" value="src/test/java"/>
+<property name="bin.dir" value="bin"/>
+<property name="test.report.dir" value="test-reports"/>
+<path id="classpath">
+<pathelement location="/usr/share/java/junit4.jar"/>
+</path>
+<target name="init">
+<mkdir dir="${bin.dir}"/>
+<mkdir dir="${test.report.dir}"/>
+</target>
+<target name="compile" depends="init">
+<javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false">
+<classpath refid="classpath"/>
+</javac>
+<javac srcdir="${test.src.dir}" destdir="${bin.dir}" includeantruntime="false">
+<classpath refid="classpath"/>
+</javac>
+</target>
+<target name="test" depends="compile">
+<junit printsummary="on" haltonfailure="no">
+<classpath>
+<path refid="classpath"/>
+<pathelement location="${bin.dir}"/>
+</classpath>
+<formatter type="xml" usefile="true"/>
+<batchtest fork="yes" todir="${test.report.dir}">
+<fileset dir="${test.src.dir}">
+<include name="**/*Test.java"/>
+</fileset>
+</batchtest>
+</junit>
+</target>
 </project>
-
