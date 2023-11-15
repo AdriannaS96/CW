@@ -26,5 +26,7 @@ public class Dec2HexTest {
         String result = Dec2Hex.convertDecimalToHex(-1);
         assertEquals("Enter non negative number.", result);
     }
+}
+
 
 
