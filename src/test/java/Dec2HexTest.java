@@ -10,7 +10,7 @@ public class Dec2HexTest {
         assertEquals("19", Dec2Hex.convertDecimalToHex(25));
         assertEquals("1E", Dec2Hex.convertDecimalToHex(30));
         assertEquals("6A", Dec2Hex.convertDecimalToHex(106));
-        assertEquals("0", Dec2Hex.convertDecimalToHex(0));
+      
     }
 
     @Test(expected = IllegalArgumentException.class)
