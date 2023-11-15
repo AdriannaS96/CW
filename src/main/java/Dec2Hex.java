@@ -1,36 +1,42 @@
-public class Dec2Hex {
-    public static void main(String[] args) {
-        if (args.length == 0) {
-            System.out.println("No input provided. Please provide an integer.");
-            return;
-        }
+import java.util.Scanner;
 
-        try {
-            int decimalNumber = Integer.parseInt(args[0]);
-            String hexValue = convertToHex(decimalNumber);
-            System.out.println("Hexadecimal representation: " + hexValue);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please provide a valid decimal number.");
-        }
-    }
+class Dec2Hex {
 
-    public static String convertToHex(int decimalNumber) {
-        if (decimalNumber == 0) {
-            return "0";
-        }
+	public static String convertDecimalToHex(int decimal) {
+		if (decimal < 0) {
+            		return "Please enter a non negative number.";
+		}
+		
+		char ch[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+		String hexadecimal = "";
 
-        StringBuilder hexBuilder = new StringBuilder();
-        int temp = decimalNumber;
+		while (decimal != 0) {
+			int rem = decimal % 16;
+			hexadecimal = ch[rem] + hexadecimal;
+			decimal = decimal / 16;
+		}
 
-        while (temp != 0) {
-            int remainder = temp % 16;
-            char hexDigit = (char) (remainder < 10 ? remainder + '0' : remainder - 10 + 'A');
-            hexBuilder.insert(0, hexDigit);
-            temp /= 16;
-        }
+		return hexadecimal;
+	}
 
-        return hexBuilder.toString();
-    }
+	public static void main(String args[]) {
+		if (args.length == 0) {
+			System.out.println("Please provide an argument to the program. E.g. 15");
+			System.exit(0);
+		} else {
+			try {
+				for ( String arg : args ) {
+					int intArg = Integer.parseInt(arg);
+					String result = convertDecimalToHex(intArg);
+					System.out.println("Hexadecimal representation is: " + result);
+				}
+			}
+			catch (NumberFormatException e) {
+				System.out.println("Invalid argument. Please provide a valid integer.");
+				System.exit(0);
+			}
+		}
+	}
 }
 
 
