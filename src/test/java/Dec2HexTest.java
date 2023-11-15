@@ -1,31 +1,33 @@
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class Dec2HexTest {
 
     @Test
     public void testDecimalToHexConversion() {
-        assertEquals("F", Dec2Hex.convertDecimalToHex(15));
+        assertEquals("0", Dec2Hex.convertDecimalToHex(0));
         assertEquals("1", Dec2Hex.convertDecimalToHex(1));
-        assertEquals("19", Dec2Hex.convertDecimalToHex(25));
-        assertEquals("1E", Dec2Hex.convertDecimalToHex(30));
-        assertEquals("6A", Dec2Hex.convertDecimalToHex(106));
-      
+        assertEquals("A", Dec2Hex.convertDecimalToHex(10));
+        assertEquals("F", Dec2Hex.convertDecimalToHex(15));
+        assertEquals("10", Dec2Hex.convertDecimalToHex(16));
+        assertEquals("1F", Dec2Hex.convertDecimalToHex(31));
+        assertEquals("64", Dec2Hex.convertDecimalToHex(100));
+        assertEquals("FF", Dec2Hex.convertDecimalToHex(255));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testInvalidInput() {
+    public void testNegativeInput() {
         Dec2Hex.convertDecimalToHex(-1);
     }
 
     @Test
-    public void testRandomNumber() {
-        assertEquals("2A", Dec2Hex.convertDecimalToHex(42));
-    }
-
-    @Test
-    public void testAnotherNumber() {
-        assertEquals("80", Dec2Hex.convertDecimalToHex(128));
+    public void testInvalidInput() {
+        assertNull(Dec2Hex.convertDecimalToHex(-1));
+        assertNull(Dec2Hex.convertDecimalToHex(Integer.MIN_VALUE));
+        assertNull(Dec2Hex.convertDecimalToHex(Integer.MAX_VALUE));
+        assertNull(Dec2Hex.convertDecimalToHex(Integer.MIN_VALUE + 1));
+        assertNull(Dec2Hex.convertDecimalToHex(Integer.MAX_VALUE - 1));
     }
 }
+
 
