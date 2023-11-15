@@ -1,56 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="Dec2Hex" default="compile">
-
-    <!-- Define properties -->
-    <property name="src.dir" value="src" />
-    <property name="build.dir" value="bin" />
-    <property name="test.dir" value="test" />
-
-    <!-- Define classpath -->
-    <path id="classpath">
-        <!-- Add any additional dependencies needed for compilation -->
-        <!-- Example: <pathelement location="lib/your-library.jar"/> -->
-    </path>
-
-    <!-- Define the compile task -->
-    <target name="compile" depends="init">
-        <!-- Create the build directory -->
-        <mkdir dir="${build.dir}" />
-
-        <!-- Compile Java source files -->
-        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath">
-            <!-- Set any additional compilation options -->
-            <!-- Example: <option value="-Xlint:unchecked"/> -->
-        </javac>
-    </target>
-
-    <!-- Define the test task -->
-    <target name="test" depends="compile">
-        <!-- Create the test directory -->
-        <mkdir dir="${test.dir}" />
-
-        <!-- Run JUnit tests -->
-        <junit printsummary="yes" haltonfailure="no">
-            <classpath>
-                <pathelement location="${build.dir}" />
-                <!-- Add any additional dependencies needed for tests -->
-                <!-- Example: <pathelement location="lib/your-test-library.jar"/> -->
-            </classpath>
-            <batchtest todir="${test.dir}">
-                <fileset dir="${src.dir}">
-                    <include name="**/*Test.java" />
-                </fileset>
-            </batchtest>
-        </junit>
-    </target>
-
-    <!-- Define the init task -->
-    <target name="init">
-        <!-- Any initialization tasks can go here -->
-    </target>
-
-    <!-- Add other targets and tasks as needed -->
-
+<project name="Dec2Hex" default="test" basedir=".">
+<property name="src.dir" value="src/main/java"/>
+<property name="test.src.dir" value="src/test/java"/>
+<property name="bin.dir" value="bin"/>
+<property name="test.report.dir" value="test-reports"/>
+<path id="classpath">
+<pathelement location="/usr/share/java/junit4.jar"/>
+</path>
+<target name="init">
+<mkdir dir="${bin.dir}"/>
+<mkdir dir="${test.report.dir}"/>
+</target>
+<target name="compile" depends="init">
+<javac srcdir="${src.dir}" destdir="${bin.dir}" includeantruntime="false">
+<classpath refid="classpath"/>
+</javac>
+<javac srcdir="${test.src.dir}" destdir="${bin.dir}" includeantruntime="false">
+<classpath refid="classpath"/>
+</javac>
+</target>
+<target name="test" depends="compile">
+<junit printsummary="on" haltonfailure="no">
+<classpath>
+<path refid="classpath"/>
+<pathelement location="${bin.dir}"/>
+</classpath>
+<formatter type="xml" usefile="true"/>
+<batchtest fork="yes" todir="${test.report.dir}">
+<fileset dir="${test.src.dir}">
+<include name="**/*Test.java"/>
+</fileset>
+</batchtest>
+</junit>
+</target>
 </project>
-
-
