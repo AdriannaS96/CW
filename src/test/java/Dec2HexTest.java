@@ -1,5 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class Dec2HexTest {
 
@@ -15,21 +16,17 @@ public class Dec2HexTest {
 
     @Test
     public void testInvalidInput() {
-        assertEquals("Enter non-negative number.", Dec2Hex.convertDecimalToHex(-1));
+        assertThrows(NumberFormatException.class, () -> Dec2Hex.convertDecimalToHex(-1));
     }
 
     @Test
     public void testRandomNumber() {
- 
         assertEquals("2A", Dec2Hex.convertDecimalToHex(42));
     }
 
     @Test
     public void testAnotherNumber() {
-        
         assertEquals("80", Dec2Hex.convertDecimalToHex(128));
     }
-
-
 }
 
