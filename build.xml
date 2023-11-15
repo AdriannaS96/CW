@@ -4,6 +4,7 @@
     <!-- Define properties -->
     <property name="src.dir" value="src" />
     <property name="build.dir" value="bin" />
+    <property name="test.dir" value="test" />
 
     <!-- Define classpath -->
     <path id="classpath">
@@ -23,6 +24,26 @@
         </javac>
     </target>
 
+    <!-- Define the test task -->
+    <target name="test" depends="compile">
+        <!-- Create the test directory -->
+        <mkdir dir="${test.dir}" />
+
+        <!-- Run JUnit tests -->
+        <junit printsummary="yes" haltonfailure="no">
+            <classpath>
+                <pathelement location="${build.dir}" />
+                <!-- Add any additional dependencies needed for tests -->
+                <!-- Example: <pathelement location="lib/your-test-library.jar"/> -->
+            </classpath>
+            <batchtest todir="${test.dir}">
+                <fileset dir="${src.dir}">
+                    <include name="**/*Test.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+    </target>
+
     <!-- Define the init task -->
     <target name="init">
         <!-- Any initialization tasks can go here -->
@@ -31,4 +52,5 @@
     <!-- Add other targets and tasks as needed -->
 
 </project>
+
 
