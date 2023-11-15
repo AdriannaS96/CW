@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<project>
-    <displayName>Dec2Hex</displayName>
-    
+<project name="Dec2Hex">
+
     <properties>
         <jdk.version>your_jdk_version</jdk.version>
         <ant.version>your_ant_version</ant.version>
@@ -56,3 +55,4 @@
         <!-- Any post-build steps you may need -->
     </postbuilders>
 </project>
+
