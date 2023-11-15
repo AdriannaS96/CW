@@ -1,6 +1,5 @@
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
 public class Dec2HexTest {
 
@@ -11,11 +10,12 @@ public class Dec2HexTest {
         assertEquals("19", Dec2Hex.convertDecimalToHex(25));
         assertEquals("1E", Dec2Hex.convertDecimalToHex(30));
         assertEquals("6A", Dec2Hex.convertDecimalToHex(106));
-        assertEquals("0", Dec2Hex.convertDecimalToHex(0));
+        assertEquals("0", Dec2Hex.convertDecimalToHex(0)); // Dodane sprawdzenie dla zera
     }
 
     @Test
     public void testInvalidInput() {
+        // Zmieniono oczekiwany wyjątek z napisu na NumberFormatException
         assertThrows(NumberFormatException.class, () -> Dec2Hex.convertDecimalToHex(-1));
     }
 
