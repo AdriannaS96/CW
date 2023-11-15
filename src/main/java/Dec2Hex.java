@@ -21,7 +21,7 @@ public class Dec2Hex {
 
     public static void main(String[] args) {
         if (args.length == 0) {
-            System.err.println("Error: No input provided. Please provide an integer.");
+            System.err.println("Error:Please enter an integer.");
             System.exit(1);
         }
 
