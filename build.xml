@@ -1,7 +1,8 @@
+
 <?xml version='1.0' encoding='UTF-8'?>
 <project name="Dec2Hex">
 
-    <scm class="hudson.scm.NullSCM"/>
+<!--    <scm class="hudson.scm.NullSCM"/> -->
 
     <builders>
         <hudson.tasks.Ant>
