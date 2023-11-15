@@ -13,7 +13,7 @@ public class Dec2HexTest {
         assertEquals("0", Dec2Hex.convertDecimalToHex(0));
     }
 
-    @Test(expected = NumberFormatException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testInvalidInput() {
         Dec2Hex.convertDecimalToHex(-1);
     }
