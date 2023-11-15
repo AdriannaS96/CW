@@ -1,20 +1,5 @@
 public class Dec2Hex {
-    public static void main(String[] args) {
-        if (args.length == 0) {
-            System.out.println("No input provided. Please provide an integer.");
-            return;
-        }
-
-        try {
-            int decimalNumber = Integer.parseInt(args[0]);
-            String hexValue = convertToHex(decimalNumber);
-            System.out.println("Hexadecimal representation: " + hexValue);
-        } catch (NumberFormatException e) {
-            System.out.println("Invalid input. Please provide a valid decimal number.");
-        }
-    }
-
-    private static String convertToHex(int decimalNumber) {
+    public static String convertDecimalToHex(int decimalNumber) {
         if (decimalNumber == 0) {
             return "0";
         }
@@ -31,5 +16,21 @@ public class Dec2Hex {
 
         return hexBuilder.toString();
     }
+
+    public static void main(String[] args) {
+        if (args.length == 0) {
+            System.out.println("No input provided. Please provide an integer.");
+            return;
+        }
+
+        try {
+            int decimalNumber = Integer.parseInt(args[0]);
+            String hexValue = convertDecimalToHex(decimalNumber);
+            System.out.println("Hexadecimal representation: " + hexValue);
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please provide a valid decimal number.");
+        }
+    }
 }
+
 
